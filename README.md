@@ -1,1 +1,1 @@
-# trabalho-PO
+# A simple boilerplate to build projects with node+ts
