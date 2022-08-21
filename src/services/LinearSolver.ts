@@ -1,5 +1,6 @@
 // @ts-nocheck
 import GLPK, { Options, Result } from "glpk.js";
+
 export default class Solver {
   glpk: any;
   options: Options;
@@ -19,7 +20,7 @@ export default class Solver {
   execute(): Result {
     const res = this.glpk.solve(
       {
-        name: "LP",
+        name: "Maximização teste",
         objective: {
           direction: this.glpk.GLP_MAX,
           name: "obj",
@@ -30,7 +31,7 @@ export default class Solver {
         },
         subjectTo: [
           {
-            name: "cons1",
+            name: "restricao 1",
             vars: [
               { name: "x1", coef: 2 },
               { name: "x2", coef: 1 },
@@ -38,7 +39,7 @@ export default class Solver {
             bnds: { type: this.glpk.GLP_UP, ub: 8, lb: 0.0 },
           },
           {
-            name: "cons2",
+            name: "restricao 2",
             vars: [
               { name: "x1", coef: 1 },
               { name: "x2", coef: 3 },

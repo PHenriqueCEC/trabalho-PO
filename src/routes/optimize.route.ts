@@ -9,7 +9,9 @@ router.post("/solve", async (req: Request, res: Response) => {
     const result = solver.execute();
 
     return res.status(200).json(result);
-  } catch (err) {}
+  } catch (err) {
+    return res.status(500);
+  }
 });
 
 export default router;

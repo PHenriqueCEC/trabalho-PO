@@ -6,7 +6,9 @@
   "author": "matheus <werneckmatheus12@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon"
+    "build" : "tsc",
+    "start": "node build/index.js",
+    "dev" : "nodemon"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
@@ -18,7 +20,9 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
     "express": "^4.18.1",
-    "glpk.js": "^4.0.1"
+    "glpk.js": "^4.0.1",
+    "xlsx": "^0.18.5"
   }
 }
