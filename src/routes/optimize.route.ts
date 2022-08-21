@@ -1,17 +1,15 @@
-import {Request, Response, Router} from 'express';
-
+import { Request, Response, Router } from "express";
+import Solver from "../services/LinearSolver";
 
 const router = Router();
 
-// interface ResponseI {
-//     solution : Array<Number>,
-// }
+router.post("/solve", async (req: Request, res: Response) => {
+  try {
+    const solver = new Solver();
+    const result = solver.execute();
 
-
-router.post('/optimize' , async (req : Request, res : Response)  => {
-    return res.status(200).json({
-
-    })
-})
+    return res.status(200).json(result);
+  } catch (err) {}
+});
 
 export default router;

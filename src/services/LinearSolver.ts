@@ -50,8 +50,6 @@ export default class Solver {
       this.options
     );
 
-    console.log(res);
-
     return res;
   }
 }
