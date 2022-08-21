@@ -1,8 +1,11 @@
 import express from "express";
+import cors from "cors";
 import optimizeRoutes from "./routes/optimize.route";
 import Solver from "./services/LinearSolver";
 
 const app = express();
+app.use(cors);
+
 const port = process.env.PORT || "2030";
 
 const solver = new Solver();
