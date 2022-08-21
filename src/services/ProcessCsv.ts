@@ -54,21 +54,35 @@ export default class ProcessCsv {
 
     const materialsData: Array<MaterialInfo> = [];
 
-    const materialsName = data[0].splice(5).forEach((material, index) => {
-      materialsData[index] = {
+    const materialsData = [...data[0]].splice(5).map((material, index) => {
+      return {
         name: material,
-        price: null,
-        mininum: 0,
-        maximum: 0,
       };
     });
 
-    const alimentTypes = data[1].splice(5);
+    [...data].splice(1).forEach((data, index) => {
+      const dataCopy = [...data];
 
-    const materialPrices = data[2].splice(5).forEach((price, index) => {
-      materialsData[index].price = price;
+      const label = data[0];
+
+      materialsData[label] = {};
+
+      dataCopy.splice(5).forEach((value, index) => {
+        materialsData[index][label] = value;
+      });
     });
 
-    console.log(materialsData);
+    const restrictions = [...data].splice(1).map((restriction) => {
+      return {
+        label: restriction[0],
+        unity: restriction[1],
+        exigences: restriction[2],
+        limInf: restriction[3],
+        limSup: restriction[4],
+      };
+    });
+
+    fs.writeFileSync("variaveis.json", JSON.stringify(materialsData, null, 2));
+    fs.writeFileSync("restricoes.json", JSON.stringify(restrictions, null, 2));
   }
 }
