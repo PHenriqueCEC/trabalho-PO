@@ -1,5 +1,6 @@
 import GLPK, { LP } from "glpk.js";
-import { GLPK_PROBLEM_TYPE } from "../constants/glpk";
+import { GLPK_PROBLEM_TYPE, GLPK_BOUND_TYPES } from "../constants/glpk";
+import { options } from "../utils/glpkDefaultOptions";
 import { Restriction } from "../interfaces/LinearProblem";
 
 export default class CreateLinearProblem {
@@ -24,33 +25,19 @@ export default class CreateLinearProblem {
     return restrictions.map((restriction) => {
       return {
         name: restriction.label,
-        unity: restriction.unity,
         vars: problemData.map((item) => {
           return {
-            name: item.name,
-            value: item[restriction.label],
+            name: String(item.name),
+            coef: item[restriction.label],
           };
         }),
         bnds: {
-          type: 1,
-          ub: restriction.limSup,
-          lb: restriction.limInf,
+          type: GLPK_BOUND_TYPES.GLP_UP,
+          ub: restriction.exigences,
+          lb: 0.0,
         },
       };
     });
-
-    // return {
-    //     name: string;
-    //     vars: {
-    //         name: string;
-    //         coef: number;
-    //     }[];
-    //     bnds: {
-    //         type: number;
-    //         ub: number;
-    //         lb: number;
-    //     };
-    // };
   }
 
   execute(
@@ -62,13 +49,13 @@ export default class CreateLinearProblem {
 
     const restriction = this.makeRestrictions(problemData, restrictions);
 
-    console.log(restriction[0]);
+    const linearProblem: LP = {
+      name: problemName,
+      objective: objetiveFunction,
+      subjectTo: restriction,
+      options,
+    };
 
-    // const linearProblem: LP = {
-    //   name : problemName,
-    //   objective: objetiveFunction,
-    //   subjectTo :
-
-    // };
+    return linearProblem;
   }
 }

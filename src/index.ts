@@ -16,7 +16,12 @@ const createLinearProblem = new CreateLinearProblem();
 
 // linearSolver.execute();
 const { materialsData, restrictions } = processCsvService.execute();
-createLinearProblem.execute(materialsData, restrictions, "Otimização teste");
+const problem = createLinearProblem.execute(
+  materialsData,
+  restrictions,
+  "Otimização teste"
+);
+linearSolver.execute(problem);
 
 const port = process.env.PORT || 3000;
 
