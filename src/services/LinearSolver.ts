@@ -1,12 +1,13 @@
 // @ts-nocheck
-import GLPK, { Options, Result } from "glpk.js";
+import GLPK, { Options, Result, LP } from "glpk.js";
 
 export default class Solver {
-  glpk: any;
+  glpk: GLPK;
   options: Options;
 
   constructor() {
     this.glpk = GLPK();
+
     this.options = {
       msglev: this.glpk.GLP_MSG_ALL,
       presol: true,
@@ -16,8 +17,7 @@ export default class Solver {
       },
     };
   }
-
-  execute(): Result {
+  execute(problem?: LP): Result {
     const res = this.glpk.solve(
       {
         name: "Maximização teste",

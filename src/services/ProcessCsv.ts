@@ -11,14 +11,17 @@ import xlsx from "xlsx";
 
 // const __dirname = dirname(fileURLToPath(import.meta.url));
 
-interface MaterialInfo {
-  name: string;
-  price: number;
-  mininum: number;
-  maximum: number;
-  materiaSecaPercentage: number;
-  energiaBruta: number;
-  proteinPercentage: number;
+interface Restriction {
+  label: string;
+  unity: string;
+  exigences: number;
+  limInf: number;
+  limSup: number;
+}
+
+interface ServiceReturn {
+  restrictions: Array<Restriction>;
+  materialsData: Array<Any>;
 }
 
 export default class ProcessCsv {
@@ -39,20 +42,8 @@ export default class ProcessCsv {
     });
   }
 
-  async execute() {
-    // const stream = await this.getStream();
-    var wb = xlsx.readFile(path.join("src", "files/", "dados.ods"));
-
-    const data: Array<Array<any>> = xlsx.utils.sheet_to_json(
-      wb.Sheets[wb.SheetNames[0]],
-      {
-        header: 1,
-      }
-    );
-
-    //1 Passo: relacionar preço a materiais
-
-    const materialsData: Array<MaterialInfo> = [];
+  getVariablesInfoFromData(data): Array<any> {
+    const materialsData: Array<any> = [];
 
     const materialsData = [...data[0]].splice(5).map((material, index) => {
       return {
@@ -72,17 +63,42 @@ export default class ProcessCsv {
       });
     });
 
-    const restrictions = [...data].splice(1).map((restriction) => {
-      return {
-        label: restriction[0],
-        unity: restriction[1],
-        exigences: restriction[2],
-        limInf: restriction[3],
-        limSup: restriction[4],
-      };
-    });
+    return materialsData;
+  }
+
+  getRestrictionsFromData(data): Array<Restriction> {
+    const restrictions: Array<Restriction> = [...data]
+      .splice(3)
+      .map((restriction) => {
+        return {
+          label: restriction[0],
+          unity: restriction[1],
+          exigences: restriction[2],
+          limInf: restriction[3],
+          limSup: restriction[4],
+        };
+      });
+
+    return restrictions;
+  }
+
+  execute(): ServiceReturn {
+    // const stream = await this.getStream();
+    var wb = xlsx.readFile(path.join("src", "files/", "dados.ods"));
+
+    const data: Array<Array<any>> = xlsx.utils.sheet_to_json(
+      wb.Sheets[wb.SheetNames[0]],
+      {
+        header: 1,
+      }
+    );
+
+    const restrictions = this.getRestrictionsFromData(data);
+    const materialsData = this.getVariablesInfoFromData(data);
 
     fs.writeFileSync("variaveis.json", JSON.stringify(materialsData, null, 2));
     fs.writeFileSync("restricoes.json", JSON.stringify(restrictions, null, 2));
+
+    return { materialsData, restrictions };
   }
 }

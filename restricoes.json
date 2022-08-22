@@ -1,19 +1,5 @@
 [
   {
-    "label": "Tipo_de_Alimento",
-    "unity": "-",
-    "exigences": 0,
-    "limInf": 1000000,
-    "limSup": 1000000
-  },
-  {
-    "label": "Preco",
-    "unity": "R$/kg",
-    "exigences": 0,
-    "limInf": 1000000,
-    "limSup": 1000000
-  },
-  {
     "label": "Materia_Seca",
     "unity": "%",
     "exigences": 0,

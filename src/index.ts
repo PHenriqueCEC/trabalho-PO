@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import optimizeRoutes from "./routes/optimize.route";
 import ProcessCsv from "./services/ProcessCsv";
+import LinearSolver from "./services/LinearSolver";
+import CreateLinearProblem from "./services/CreateLinearProblem";
 
 const app = express();
 
@@ -9,8 +11,12 @@ app.use(cors());
 app.use(express.json());
 
 const processCsvService = new ProcessCsv();
+const linearSolver = new LinearSolver();
+const createLinearProblem = new CreateLinearProblem();
 
-processCsvService.execute();
+// linearSolver.execute();
+const { materialsData, restrictions } = processCsvService.execute();
+createLinearProblem.execute(materialsData, restrictions, "Otimização teste");
 
 const port = process.env.PORT || 3000;
 
