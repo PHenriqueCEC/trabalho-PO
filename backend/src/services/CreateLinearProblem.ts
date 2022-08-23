@@ -44,7 +44,7 @@ export default class CreateLinearProblem {
     problemData: Array<any>,
     restrictions: Array<Restriction>,
     problemName: string
-  ) {
+  ): LP {
     const objetiveFunction = this.makeObjetiveFunction(problemData);
 
     const restriction = this.makeRestrictions(problemData, restrictions);

@@ -2,14 +2,7 @@
 import fs from "fs";
 import path from "path";
 import xlsx from "xlsx";
-
-interface Restriction {
-  label: string;
-  unity: string;
-  exigences: number;
-  limInf: number;
-  limSup: number;
-}
+import { Restriction } from "../interfaces/LinearProblem";
 
 interface ServiceReturn {
   restrictions: Array<Restriction>;
@@ -63,8 +56,8 @@ export default class ProcessCsv {
     return restrictions;
   }
 
-  execute(): ServiceReturn {
-    var wb = xlsx.readFile(path.join("src", "files/", "dados.ods"));
+  execute(odsFile: Buffer): ServiceReturn {
+    const wb = xlsx.read(odsFile);
 
     const data: Array<Array<any>> = xlsx.utils.sheet_to_json(
       wb.Sheets[wb.SheetNames[0]],
@@ -76,8 +69,8 @@ export default class ProcessCsv {
     const restrictions = this.getRestrictionsFromData(data);
     const materialsData = this.getVariablesInfoFromData(data);
 
-    fs.writeFileSync("variaveis.json", JSON.stringify(materialsData, null, 2));
-    fs.writeFileSync("restricoes.json", JSON.stringify(restrictions, null, 2));
+    // fs.writeFileSync("variaveis.json", JSON.stringify(materialsData, null, 2));
+    // fs.writeFileSync("restricoes.json", JSON.stringify(restrictions, null, 2));
 
     return { materialsData, restrictions };
   }
