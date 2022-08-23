@@ -49,7 +49,7 @@ export default class CreateLinearProblem {
 
     const restriction = this.makeRestrictions(problemData, restrictions);
     restriction.push({
-      name: "Last restriction",
+      name: "Sum of the materials equal to 1",
       vars: objetiveFunction.vars.map((item) => {
         return {
           coef: 1,
@@ -62,8 +62,6 @@ export default class CreateLinearProblem {
         ub: 1,
       },
     });
-
-    restriction.filter((restriction) => restriction.bnds.ub > 0);
 
     const linearProblem: LP = {
       name: problemName,
