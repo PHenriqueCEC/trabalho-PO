@@ -6,13 +6,14 @@
   "author": "matheus <werneckmatheus12@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build" : "tsc",
+    "build": "tsc",
     "start": "node build/index.js",
-    "dev" : "nodemon"
+    "dev": "nodemon"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@types/multer": "^1.4.7",
     "@types/node": "^16.9.2",
     "nodemon": "^2.0.12",
     "ts-node": "^10.2.1",
@@ -23,6 +24,7 @@
     "csv-parser": "^3.0.0",
     "express": "^4.18.1",
     "glpk.js": "^4.0.1",
+    "multer": "^1.4.5-lts.1",
     "xlsx": "^0.18.5"
   }
 }

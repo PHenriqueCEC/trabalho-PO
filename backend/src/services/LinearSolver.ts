@@ -12,7 +12,7 @@ export default class Solver {
   execute(problem?: LP): Result {
     const res = this.glpk.solve(problem);
 
-    console.log(res);
+    // console.log(res);
 
     // const res = this.glpk.solve(
     //   {
