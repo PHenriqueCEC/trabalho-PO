@@ -8,6 +8,7 @@ export default class Solver {
   constructor() {
     this.glpk = GLPK();
   }
+
   execute(problem?: LP): Result {
     const res = this.glpk.solve(problem);
 

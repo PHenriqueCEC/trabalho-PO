@@ -20,7 +20,8 @@ const problem = createLinearProblem.execute(
   restrictions,
   "Otimização teste"
 );
-linearSolver.execute(problem);
+
+const response = linearSolver.execute(problem);
 
 const port = process.env.PORT || 3000;
 
