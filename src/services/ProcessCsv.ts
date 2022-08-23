@@ -1,15 +1,7 @@
 // @ts-nocheck
-import { dirname } from "path";
-import { fileURLToPath } from "url";
 import fs from "fs";
 import path from "path";
-import { Readable } from "stream";
 import xlsx from "xlsx";
-
-// xlsx.set_fs()
-// xlsx.stream.set_readable(Readable);
-
-// const __dirname = dirname(fileURLToPath(import.meta.url));
 
 interface Restriction {
   label: string;
@@ -29,17 +21,6 @@ export default class ProcessCsv {
 
   constructor() {
     this.results = [];
-  }
-
-  async getStream() {
-    return new Promise((resolve, reject) => {
-      const data: Array<any> = [];
-
-      fs.createReadStream(path.join("src", "files/", "dados.ods"))
-        .on("data", (row: any) => data.push(row))
-        .on("end", () => resolve(data))
-        .on("error", () => reject());
-    });
   }
 
   getVariablesInfoFromData(data): Array<any> {
@@ -83,7 +64,6 @@ export default class ProcessCsv {
   }
 
   execute(): ServiceReturn {
-    // const stream = await this.getStream();
     var wb = xlsx.readFile(path.join("src", "files/", "dados.ods"));
 
     const data: Array<Array<any>> = xlsx.utils.sheet_to_json(

@@ -9,9 +9,42 @@ export default class Solver {
     this.glpk = GLPK();
   }
   execute(problem?: LP): Result {
-    fs.writeFileSync("problem.json", JSON.stringify(problem, null, 2));
-
     const res = this.glpk.solve(problem);
+
+    console.log(res);
+
+    // const res = this.glpk.solve(
+    //   {
+    //     name: "Minimização teste",
+    //     objective: {
+    //       direction: this.glpk.GLP_MIN,
+    //       name: "obj",
+    //       vars: [
+    //         { name: "x1", coef: 0.8 },
+    //         { name: "x2", coef: 0.6 },
+    //       ],
+    //     },
+    //     subjectTo: [
+    //       {
+    //         name: "restricao 1",
+    //         vars: [
+    //           { name: "x1", coef: 0.2 },
+    //           { name: "x2", coef: 0.32 },
+    //         ],
+    //         bnds: { type: this.glpk.GLP_FX, ub: 0.25, lb: 0.25 },
+    //       },
+    //       {
+    //         name: "restricao 2",
+    //         vars: [
+    //           { name: "x1", coef: 1 },
+    //           { name: "x2", coef: 1 },
+    //         ],
+    //         bnds: { type: this.glpk.GLP_FX, ub: 0, lb: 1 },
+    //       },
+    //     ],
+    //   },
+    //   this.options
+    // );
 
     // const res = this.glpk.solve(
     //   {

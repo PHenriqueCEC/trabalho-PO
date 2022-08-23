@@ -14,7 +14,6 @@ const processCsvService = new ProcessCsv();
 const linearSolver = new LinearSolver();
 const createLinearProblem = new CreateLinearProblem();
 
-// linearSolver.execute();
 const { materialsData, restrictions } = processCsvService.execute();
 const problem = createLinearProblem.execute(
   materialsData,

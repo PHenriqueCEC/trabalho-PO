@@ -5572,9 +5572,92 @@
         "ub": 0,
         "lb": 0
       }
+    },
+    {
+      "name": "Last restriction",
+      "vars": [
+        {
+          "coef": 1,
+          "name": "Algodao_Farelo_39"
+        },
+        {
+          "coef": 1,
+          "name": "Amido"
+        },
+        {
+          "coef": 1,
+          "name": "Arroz_Farelo"
+        },
+        {
+          "coef": 1,
+          "name": "Arroz_Farelo_Deseng."
+        },
+        {
+          "coef": 1,
+          "name": "Carne_e_Ossos_Farinha_50"
+        },
+        {
+          "coef": 1,
+          "name": "Citrus_Polpa"
+        },
+        {
+          "coef": 1,
+          "name": "Mandioca_Integral_Raspa"
+        },
+        {
+          "coef": 1,
+          "name": "Milho_7,88"
+        },
+        {
+          "coef": 1,
+          "name": "Milho_Farelo_de_Glúten_60"
+        },
+        {
+          "coef": 1,
+          "name": "oleo_de_Soja"
+        },
+        {
+          "coef": 1,
+          "name": "Soja_Farelo_48"
+        },
+        {
+          "coef": 1,
+          "name": "Trigo_Farelo"
+        },
+        {
+          "coef": 1,
+          "name": "Lisina_-_HCL"
+        },
+        {
+          "coef": 1,
+          "name": "Metionina"
+        },
+        {
+          "coef": 1,
+          "name": "Fosfato_BicAlcico"
+        },
+        {
+          "coef": 1,
+          "name": "CalcArio_Calcitico"
+        },
+        {
+          "coef": 1,
+          "name": "Sal_Comum"
+        },
+        {
+          "coef": 1,
+          "name": "Excipiente"
+        }
+      ],
+      "bnds": {
+        "type": 5,
+        "lb": 1,
+        "ub": 1
+      }
     }
   ],
   "options": {
+    "msglev": 3,
     "presol": true,
     "cb": {
       "each": 1

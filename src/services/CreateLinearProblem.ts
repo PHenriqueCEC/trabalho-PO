@@ -48,6 +48,22 @@ export default class CreateLinearProblem {
     const objetiveFunction = this.makeObjetiveFunction(problemData);
 
     const restriction = this.makeRestrictions(problemData, restrictions);
+    restriction.push({
+      name: "Last restriction",
+      vars: objetiveFunction.vars.map((item) => {
+        return {
+          coef: 1,
+          name: item.name,
+        };
+      }),
+      bnds: {
+        type: GLPK_BOUND_TYPES.GLP_FX,
+        lb: 1,
+        ub: 1,
+      },
+    });
+
+    restriction.filter((restriction) => restriction.bnds.ub > 0);
 
     const linearProblem: LP = {
       name: problemName,
