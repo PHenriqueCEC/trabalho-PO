@@ -1,0 +1,21 @@
+.downloadButton {
+  font-size: var(--font-regular-size);
+
+  margin-top: 30px;
+
+  width: 300px;
+  height: 60px;
+  outline: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gray-950);
+  color: var(--white-0);
+
+  svg {
+    margin-left: 10px;
+    width: 20px;
+    height: auto;
+  }
+}
