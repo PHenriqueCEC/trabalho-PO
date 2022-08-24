@@ -1,8 +1,11 @@
+//@ts-nocheck
 import { Request, Response, Router } from "express";
 import multer from "multer";
+import xlsx from "xlsx";
 import ProcessCsv from "../services/ProcessCsv";
 import CreateLinearProblem from "../services/CreateLinearProblem";
 import Solver from "../services/LinearSolver";
+import jsonToSheetBuffer from "../utils/jsonToSheetBuffer";
 
 const upload = multer();
 const router = Router();
@@ -28,9 +31,15 @@ router.post(
       );
 
       const solverInstance = new Solver();
-      const result = solverInstance.execute(problemParsed);
+      const solvedProblem = solverInstance.execute(problemParsed);
 
-      return res.status(200).json(result);
+      const sheet = jsonToSheetBuffer(solvedProblem.result.vars);
+
+      return res.status(200).json({
+        ...solvedProblem,
+        materialsData,
+        sheet,
+      });
     } catch (err) {
       let errorMessage = "";
       if (err instanceof Error) errorMessage = err.message;
