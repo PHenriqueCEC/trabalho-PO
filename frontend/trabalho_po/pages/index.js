@@ -117,7 +117,7 @@ export default function Home() {
 
   const renderResultsSection = () => {
     return (
-      <>
+      <div className="custom-container">
         <Navbar onGoBackButton={() => setIsResultSectionVisible(false)} />
         {solveProblemSuccess ? (
           <>
@@ -127,7 +127,7 @@ export default function Home() {
         ) : (
           <ErrorAlert>{solvedProblemData.error}</ErrorAlert>
         )}
-      </>
+      </div>
     );
   };
 

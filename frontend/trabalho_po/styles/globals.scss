@@ -31,6 +31,11 @@ a {
 }
 
 .custom-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.container-centered {
   display: flex;
   align-items: center;
   justify-content: center;

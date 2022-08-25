@@ -5,7 +5,7 @@ export function ErrorAlert(props) {
   const { children } = props;
 
   return (
-    <div className="custom-container">
+    <div className="custom-container container-centered">
       <div className={`${styles.errorAlert}`}>
         {children} <BiErrorCircle />
       </div>
