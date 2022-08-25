@@ -6,6 +6,7 @@ import ProcessCsv from "../services/ProcessCsv";
 import CreateLinearProblem from "../services/CreateLinearProblem";
 import Solver from "../services/LinearSolver";
 import jsonToSheetBuffer from "../utils/jsonToSheetBuffer";
+import glpkResultToParsedJson from "../utils/glpkResultToParsedJson";
 
 const upload = multer();
 const router = Router();
@@ -33,7 +34,9 @@ router.post(
       const solverInstance = new Solver();
       const solvedProblem = solverInstance.execute(problemParsed);
 
-      const sheet = jsonToSheetBuffer(solvedProblem.result.vars);
+      const sheet = jsonToSheetBuffer(
+        glpkResultToParsedJson(solvedProblem.result.vars, materialsData)
+      );
 
       return res.status(200).json({
         ...solvedProblem,
@@ -45,7 +48,7 @@ router.post(
       if (err instanceof Error) errorMessage = err.message;
 
       return res.status(500).json({
-        errorMessage,
+        message: errorMessage,
       });
     }
   }

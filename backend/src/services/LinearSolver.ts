@@ -13,7 +13,7 @@ export default class Solver {
     const res: Result = this.glpk.solve(problem);
 
     if (res.result.status === GLPK_RESULT_TYPE.GLP_NOFEAS)
-      throw new Error("Não existe solução viável");
+      throw new Error("Não existe solução viável para o problema");
 
     return res;
   }
