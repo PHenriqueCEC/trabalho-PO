@@ -68,7 +68,7 @@ export default function Home() {
           {resultsSorted &&
             resultsSorted.map((key) => {
               const quantity = result?.vars[key];
-              const quantityInGramas = quantity.toFixed(2) * 1000;
+              const quantityInGramas = quantity.toFixed(3) * 1000;
               const materialData = materialsData.find(
                 (item) => item.name === key
               );
