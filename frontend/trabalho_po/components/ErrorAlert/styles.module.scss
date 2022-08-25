@@ -1,0 +1,19 @@
+.errorAlert {
+  background: var(--red-alert);
+  height: 50px;
+  width: 600px;
+
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-left: 15px;
+
+    width: 20px;
+    height: auto;
+  }
+
+  color: var(--white-0);
+}

@@ -6,28 +6,35 @@ import DownloadButton from "../components/DownloadButton";
 import { AiOutlineDownload } from "react-icons/ai";
 import { solveProblem } from "../endpoints/solver";
 import { Navbar } from "../components/Navbar";
+import { ErrorAlert } from "../components/ErrorAlert";
 import { moneyFormatter } from "../components/utils";
 
 export default function Home() {
   const [solveProblemSuccess, setSolveProblemSuccess] = useState(false);
   const [solvedProblemData, setSolvedProblemData] = useState({});
-
-  console.log(solvedProblemData);
+  const [isResultsSectionVisible, setIsResultSectionVisible] = useState(false);
 
   const { result = {} } = solvedProblemData;
   const { sheet } = solvedProblemData;
   const { materialsData = [] } = solvedProblemData;
 
-  const problemName = "teste";
-
   const fetchSolverEndpoint = async (file) => {
     try {
-      const response = await solveProblem({ file, problemName });
+      const response = await solveProblem({
+        file,
+        problemName: "Otimização de ração",
+      });
       setSolveProblemSuccess(true);
 
       setSolvedProblemData(response.data);
     } catch (err) {
       setSolveProblemSuccess(false);
+      console.log(err);
+      setSolvedProblemData({
+        error: err.response.data.message,
+      });
+    } finally {
+      setIsResultSectionVisible(true);
     }
   };
 
@@ -104,6 +111,26 @@ export default function Home() {
     tempLink.click();
   };
 
+  const renderErrorMessage = () => {
+    <span> {solvedProblemData.error} </span>;
+  };
+
+  const renderResultsSection = () => {
+    return (
+      <>
+        <Navbar onGoBackButton={() => setIsResultSectionVisible(false)} />
+        {solveProblemSuccess ? (
+          <>
+            <h1> Resultado do processamento</h1>
+            {renderResultsTable()}
+          </>
+        ) : (
+          <ErrorAlert>{solvedProblemData.error}</ErrorAlert>
+        )}
+      </>
+    );
+  };
+
   return (
     <>
       <Head>
@@ -112,7 +139,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.container}>
-        {!solveProblemSuccess ? (
+        {!isResultsSectionVisible ? (
           <div className={styles.contentContainer}>
             <h1> Adicione a planilha com os dados </h1>
             <div>
@@ -125,12 +152,7 @@ export default function Home() {
             </DownloadButton>
           </div>
         ) : (
-          <div>
-            <Navbar onGoBackButton={() => setSolveProblemSuccess(false)} />
-            <h1> Resultado do processamento</h1>
-
-            {renderResultsTable()}
-          </div>
+          <div>{renderResultsSection()}</div>
         )}
       </div>
     </>

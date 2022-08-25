@@ -8,7 +8,7 @@ export default function UploadButton(props) {
     <label className={styles.uploadFileButton}>
       Selecione o arquivo
       <AiOutlineCloudUpload />
-      <input type="file" onChange={onChange} />
+      <input type="file" onChange={onChange} accept=".ods,.xslx" />
     </label>
   );
 }
