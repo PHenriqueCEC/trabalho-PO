@@ -1,8 +1,8 @@
-import GLPK, { LP } from "glpk.js";
+//@ts-nocheck
+import glpk, { LP } from "glpk.js";
 import { GLPK_PROBLEM_TYPE, GLPK_BOUND_TYPES } from "../constants/glpk";
 import { options } from "../utils/glpkDefaultOptions";
 import { Restriction } from "../interfaces/LinearProblem";
-
 export default class CreateLinearProblem {
   constructor() {}
 
@@ -32,9 +32,8 @@ export default class CreateLinearProblem {
           };
         }),
         bnds: {
-          type: GLPK_BOUND_TYPES.GLP_UP,
-          ub: restriction.exigences,
-          lb: 0.0,
+          type: GLPK_BOUND_TYPES.GLP_LO,
+          lb: restriction.exigences,
         },
       };
     });
@@ -67,8 +66,9 @@ export default class CreateLinearProblem {
       name: problemName,
       objective: objetiveFunction,
       subjectTo: restriction,
-      options,
     };
+
+    // fs.writeFileSync("lp", glpk().write(linearProblem));
 
     return linearProblem;
   }

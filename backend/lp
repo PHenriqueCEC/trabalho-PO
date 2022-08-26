@@ -1,0 +1,47 @@
+\* Problem: Otimização de ração *\
+
+Minimize
+ obj: + 0.1 Algodao_Farelo_39 + 1.33 Amido + 0.46 Arroz_Farelo
+ + 0.49 Arroz_Farelo_Deseng. + 4.5 Carne_e_Ossos_Farinha_50
+ + 0.48 Mandioca_Integral_Raspa + 1.3 oleo_de_Soja
+
+Subject To
+ Proteina_Bruta: + 25 Algodao_Farelo_39 + 20 Amido + 15 Arroz_Farelo
+ + 15 Arroz_Farelo_Deseng. + 22 Carne_e_Ossos_Farinha_50 >= 19.8
+ Carboidrato: + 200 Algodao_Farelo_39 + 400 Amido + 200 Arroz_Farelo
+ + 150 Arroz_Farelo_Deseng. + 600 Carne_e_Ossos_Farinha_50
+ + 430 Mandioca_Integral_Raspa + 600 oleo_de_Soja >= 350
+ Lisina_Dig_: + 0.05 Algodao_Farelo_39 + 0.08 Arroz_Farelo
+ + 4 Arroz_Farelo_Deseng. + 4 Carne_e_Ossos_Farinha_50
+ + 0.02 Mandioca_Integral_Raspa + 3 oleo_de_Soja >= 1
+ Vitamina_A: + 0.2 Amido + 3 Arroz_Farelo + 0.9 Carne_e_Ossos_Farinha_50
+ + 0.5 oleo_de_Soja >= 0.5
+ Vitamina_B: + Algodao_Farelo_39 + 0.2 Amido + 3 Arroz_Farelo
+ + 150 Carne_e_Ossos_Farinha_50 >= 3
+ Manganes: + 0.45 Amido + 0.2 Arroz_Farelo + 0.6 Arroz_Farelo_Deseng.
+ + 12 Carne_e_Ossos_Farinha_50 + 12 Mandioca_Integral_Raspa >= 5
+ Sodio: + 0.59 Algodao_Farelo_39 + 1.43 Arroz_Farelo
+ + 1.61 Arroz_Farelo_Deseng. + 0.05 Mandioca_Integral_Raspa
+ + 0.06 oleo_de_Soja >= 0.2
+ Cloro: + 0.44 Algodao_Farelo_39 + 0.24 Arroz_Farelo
+ + 0.28 Arroz_Farelo_Deseng. + 4.75 Carne_e_Ossos_Farinha_50
+ + 0.07 Mandioca_Integral_Raspa + 0.03 oleo_de_Soja >= 0.18
+ Potassio: + 0.39 Algodao_Farelo_39 + 0.48 Arroz_Farelo
+ + 0.55 Arroz_Farelo_Deseng. + 3.27 Carne_e_Ossos_Farinha_50
+ + 0.12 oleo_de_Soja >= 0.58
+ Fibra_Bruta: + 0.47 Algodao_Farelo_39 + 1.33 Arroz_Farelo
+ + 0.25 Arroz_Farelo_Deseng. + 0.54 Carne_e_Ossos_Farinha_50 >= 0
+ Ferro: + 20 Algodao_Farelo_39 + 115.4 Arroz_Farelo
+ + 170.1 Arroz_Farelo_Deseng. + 247.7 Carne_e_Ossos_Farinha_50
+ + 92.6 oleo_de_Soja >= 55
+ Zinco: + 56.7 Algodao_Farelo_39 + 49.8 Arroz_Farelo
+ + 134.5 Arroz_Farelo_Deseng. + 80.8 Carne_e_Ossos_Farinha_50
+ + 11.1 oleo_de_Soja >= 71.5
+ Amido: + 1.19 Algodao_Farelo_39 + 4.5 Arroz_Farelo
+ + 0.54 Arroz_Farelo_Deseng. + 2.17 Carne_e_Ossos_Farinha_50
+ + 5 oleo_de_Soja >= 2
+ Sum_of_the_materials_equal_to_1: + Algodao_Farelo_39 + Amido
+ + Arroz_Farelo + Arroz_Farelo_Deseng. + Carne_e_Ossos_Farinha_50
+ + Mandioca_Integral_Raspa + oleo_de_Soja = 1
+
+End

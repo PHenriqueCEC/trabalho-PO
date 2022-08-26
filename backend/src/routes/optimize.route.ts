@@ -47,6 +47,8 @@ router.post(
       let errorMessage = "";
       if (err instanceof Error) errorMessage = err.message;
 
+      console.log(err);
+
       return res.status(500).json({
         message: errorMessage,
       });
