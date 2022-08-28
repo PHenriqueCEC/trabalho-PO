@@ -1,6 +1,6 @@
-# Trabalho Prático pesquisa operacional 2022/1
+# Trabalho Prático da disciplina Pesquisa Operacional 2022/1
 
-## Membros do grupo: Matheus Gomes Luz Werneck e Pedro Almeida Cardoso
+## Membros do grupo: Matheus Gomes e Pedro Almeida
 
 O Trabalho consiste em uma solução para o problema de composição de ração minimizando o custo, utilizando para isso o GLPK.
 
